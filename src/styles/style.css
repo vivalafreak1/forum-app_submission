@@ -175,7 +175,7 @@
     color: var(--gray-dark-color);
   }
   
-  .thread-item__detail .thread-item__text {
+  .thread-item__detail .thread-item__body {
     font-size: 15px;
   }
   
@@ -295,6 +295,15 @@
     margin-top: 32px;
   }
   
+  .thread-item__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .thread-item__category {
+    font-size: 12px;
+  }
+
   @media screen and (min-width: 850px) {
     .login-page, .register-page {
       grid-template-columns: 1.25fr 1fr;

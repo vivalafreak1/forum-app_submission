@@ -52,7 +52,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/new" element={<AddThreadPage />} />
             <Route path="/leaderboards" element={<LeaderboardsPage />} />
-            <Route path="/thread/:threadId" element={<DetailPage />} />
+            <Route path="/threads/:threadId" element={<DetailPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
