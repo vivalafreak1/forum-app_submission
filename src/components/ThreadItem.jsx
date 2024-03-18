@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { postedAt } from '../utils';
+import CardActions from '@mui/material/CardActions';
+import { FaRegComment } from 'react-icons/fa';
+import postedAt from '../utils';
 import VoteButton from './VoteButton';
-
-import { FaRegComment } from "react-icons/fa";
 
 function ThreadItem({
   id,
@@ -50,6 +50,19 @@ function ThreadItem({
           <p className="thread-item__title">{title}</p>
           <p className="thread-item__body">{body}</p>
         </article>
+        <CardActions sx={{ ml: 1 }}>
+          <VoteButton
+            id={id}
+            authUser={authUser}
+            upVote={upVote}
+            downVote={downVote}
+            neutralizeVote={neutralizeVote}
+            upVotesBy={upVotesBy}
+            downVotesBy={downVotesBy}
+          />
+          <FaRegComment />
+          <p className="thread-item__total-comments">{totalComments}</p>
+        </CardActions>
       </div>
     </div>
   );

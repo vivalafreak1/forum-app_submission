@@ -304,6 +304,9 @@
     font-size: 12px;
   }
 
+   .vote-button_upvotes .vote-button_downvotes{
+    font-size: 12px;
+   }
   @media screen and (min-width: 850px) {
     .login-page, .register-page {
       grid-template-columns: 1.25fr 1fr;
