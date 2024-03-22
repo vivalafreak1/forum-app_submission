@@ -307,6 +307,101 @@
    .vote-button_upvotes .vote-button_downvotes{
     font-size: 12px;
    }
+
+   .leaderboard_item {
+    display: flex;
+    align-items: center; 
+    margin-top: 16px;
+   }
+
+   .leaderboard_item-avatar {
+    width: 34px; 
+    height: 34px;
+    margin-left: 8px;
+    margin-right: 8px;
+   }
+
+   .leaderboard_item-name {
+    font-size: 20px;
+    font-weight: 500;
+   }
+
+   .leaderboard_item-score {
+    margin-left: auto; 
+    font-size: 20px; 
+    font-weight: 500;
+    margin-right: 16px 
+   }
+
+   .comment_give-comment {
+    margin-left: 2px;
+    font-weight: bold;
+    font-size: 14px;
+   }
+
+   .comment_form {
+    margin-left: 2px;
+    margin-top: 1px;
+    margin-bottom: 5px;
+   }
+
+  .comment_form-text-area {
+    width: 1120px;
+    padding: 8px; 
+    border: 1px solid #ccc;
+    resize: vertical;    
+  }
+
+  .comment-item {
+    padding-bottom: 0;
+  }
+
+  .comment-item_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .comment-item_grid {
+    flex: 0 0 auto;
+  }
+
+  .comment-item_user-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  .comment-item_user-name {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .comment-item_user-postedat {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #000;
+  }
+
+  .comment-item_user-content {
+    margin-top: 8px;
+    font-weight: medium;
+    color: #000;
+  }
+
+  .comment-item_card {
+    margin-left: 8px;
+    padding-bottom: 16px;
+    padding-top: 8px;
+  }
+
+  .comment-item_divider {
+    border-bottom: 1px solid #e0e0e0;
+    margin-top: 16px;
+  }
+
+
   @media screen and (min-width: 850px) {
     .login-page, .register-page {
       grid-template-columns: 1.25fr 1fr;
