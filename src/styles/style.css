@@ -458,6 +458,18 @@
     margin-left: 10px;
   }
 
+  .home-page__category-contained {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+
+  .home-page__category-outlined {
+    margin-right: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #000;
+    background-color: transparent;
+  }
+
   @media screen and (min-width: 850px) {
     .login-page, .register-page {
       grid-template-columns: 1.25fr 1fr;
