@@ -470,6 +470,35 @@
     background-color: transparent;
   }
 
+  .detail-page {
+    padding-bottom: 16px;
+  }
+
+  .detail-page__card {
+    margin-bottom: 16px;
+  }
+
+  .detail-page__comment-count {
+    font-size: 18px; 
+    margin-left: 8px;
+    font-weight: bold;
+  }
+
+  .add-thread-page {
+    margin-top: 8px;
+  }
+
+  .add-thread-page__card {
+    margin-bottom: 16px;
+  }
+
+  .add-thread-page__h5 {
+    font-weight: 'bold'; 
+    margin-left: 8px;
+    margin-top: 8px;
+  }
+
+
   @media screen and (min-width: 850px) {
     .login-page, .register-page {
       grid-template-columns: 1.25fr 1fr;
