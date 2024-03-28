@@ -1,13 +1,20 @@
 import { ActionType } from './action';
 
-function threadsReducer(threads = [], action = {}) {
+const initialState = {
+  threads: [],
+  loading: false,
+};
+
+function threadsReducer(initial = initialState, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREADS:
-      return action.payload.threads;
+      return { ...initial, threads: action.payload.threads };
+    case ActionType.LOADING:
+      return { ...initial, loading: action.payload };
     case ActionType.ADD_THREAD:
-      return [action.payload.thread, ...threads];
+      return [action.payload.thread, ...initial.threads];
     case ActionType.UP_VOTE_THREAD:
-      return threads.map((thread) => {
+      return initial.threads.map((thread) => {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
@@ -22,7 +29,7 @@ function threadsReducer(threads = [], action = {}) {
         return thread;
       });
     case ActionType.DOWN_VOTE_THREAD:
-      return threads.map((thread) => {
+      return initial.threads.map((thread) => {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
@@ -37,7 +44,7 @@ function threadsReducer(threads = [], action = {}) {
         return thread;
       });
     case ActionType.NEUTRALIZE_VOTE_THREAD:
-      return threads.map((thread) => {
+      return initial.threads.map((thread) => {
         if (thread.id === action.payload.threadId) {
           return {
             ...thread,
@@ -52,7 +59,7 @@ function threadsReducer(threads = [], action = {}) {
         return thread;
       });
     default:
-      return threads;
+      return initial;
   }
 }
 

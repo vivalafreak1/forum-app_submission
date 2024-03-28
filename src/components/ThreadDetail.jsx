@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { userShape } from './ThreadItem';
 import VoteButton from './VoteButton';
-import postedAt from '../utils';
+import { postedAt } from '../utils';
 
 function ThreadDetail({
   id,

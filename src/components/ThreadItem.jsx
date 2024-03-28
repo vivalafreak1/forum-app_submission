@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import { FaRegComment } from 'react-icons/fa';
-import postedAt from '../utils';
+import { postedAt } from '../utils';
 import VoteButton from './VoteButton';
 
 function ThreadItem({

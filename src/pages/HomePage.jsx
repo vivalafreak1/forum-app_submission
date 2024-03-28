@@ -14,10 +14,10 @@ import {
 function HomePage() {
   const [filter, setFilter] = useState('');
   const {
-    threads = [],
     users = [],
     authUser,
   } = useSelector((states) => states);
+  const { threads, loading } = useSelector((states) => states.threads);
   const dispatch = useDispatch();
 
   const categories = new Set(threads.map((thread) => thread.category));
@@ -43,6 +43,10 @@ function HomePage() {
     threadOwner: users.find((user) => user.id === thread.ownerId),
     authUser: authUser.id,
   }));
+
+  if (loading) {
+    return <div>Loading..</div>;
+  }
 
   return (
     <section className="home-page">

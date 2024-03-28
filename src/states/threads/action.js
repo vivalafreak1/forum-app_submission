@@ -1,4 +1,4 @@
-import { hideLoading, showLoading } from 'react-redux-loading-bar';
+// import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -7,7 +7,15 @@ const ActionType = {
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
   DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
   NEUTRALIZE_VOTE_THREAD: 'NEUTRALIZE_VOTE_THREAD',
+  LOADING: 'LOADING',
 };
+
+function loadingThreadsActionCreator(isLoading) {
+  return {
+    type: ActionType.LOADING,
+    payload: isLoading,
+  };
+}
 
 function receiveThreadsActionCreator(threads) {
   return {
@@ -59,14 +67,14 @@ function neutralizeVoteThreadActionCreator({ threadId, userId }) {
 
 function asyncAddThread({ title, body, category }) {
   return async (dispatch) => {
-    dispatch(showLoading());
+    // dispatch(showLoading());
     try {
       const thread = await api.createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
       alert(error.message);
     }
-    dispatch(hideLoading());
+    // dispatch(hideLoading());
   };
 }
 
@@ -112,12 +120,9 @@ function asyncNeutralizeVoteThread(threadId) {
 export {
   ActionType,
   receiveThreadsActionCreator,
-  addThreadActionCreator,
-  upVoteThreadActionCreator,
-  downVoteThreadActionCreator,
-  neutralizeVoteThreadActionCreator,
   asyncAddThread,
   asyncUpVoteThread,
   asyncDownVoteThread,
   asyncNeutralizeVoteThread,
+  loadingThreadsActionCreator,
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Loading from './components/Loading';
+// import Loading from './components/Loading';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
@@ -29,7 +29,7 @@ function App() {
   if (authUser === null) {
     return (
       <>
-        <Loading />
+        {/* <Loading /> */}
         <main>
           <Routes>
             <Route path="/*" element={<LoginPage />} />
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <>
-      <Loading />
+      {/* <Loading /> */}
       <div className="app-container">
         <header>
           <Navigation authUser={authUser} signOut={onSignOut} />
@@ -53,7 +53,7 @@ function App() {
             <Route path="/new" element={<AddThreadPage />} />
             <Route path="/leaderboards" element={<LeaderboardsPage />} />
             <Route path="/threads/:threadId" element={<DetailPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
         </main>
       </div>
