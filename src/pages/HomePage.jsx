@@ -13,6 +13,7 @@ import {
 
 function HomePage() {
   const [filter, setFilter] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const {
     users = [],
     authUser,
@@ -51,24 +52,20 @@ function HomePage() {
   return (
     <section className="home-page">
       {Array.from(categories).map((category) => {
-        if (filter === category) {
-          return (
-            <button
-              className="home-page__category-contained"
-              key={category}
-              onClick={() => setFilter('')}
-              type="submit"
-            >
-              {`#${category}`}
-            </button>
-          );
-        }
+        const isCategorySelected = selectedCategory === category;
+        const categoryClass = isCategorySelected
+          ? 'home-page__category-contained home-page__category-selected'
+          : 'home-page__category-outlined';
+
         return (
           <button
-            className="home-page__category-outlined"
+            className={categoryClass}
             key={category}
-            type="submit"
-            onClick={() => setFilter(category)}
+            onClick={() => {
+              setFilter(isCategorySelected ? '' : category);
+              setSelectedCategory(isCategorySelected ? '' : category);
+            }}
+            type="button"
           >
             {`#${category}`}
           </button>
@@ -87,11 +84,12 @@ function HomePage() {
       />
       <Link to="/new">
         <Fab
-          color="primary"
           aria-label="add"
-          sx={{ bottom: 40, right: 40, position: 'fixed' }}
+          sx={{
+            bottom: 40, right: 40, position: 'fixed', bgcolor: '#91ff35',
+          }}
         >
-          <IoMdAdd />
+          <IoMdAdd style={{ fontSize: '30px', color: 'black' }} />
         </Fab>
       </Link>
     </section>

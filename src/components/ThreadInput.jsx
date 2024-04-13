@@ -10,28 +10,24 @@ function ThreadInput({ addThread }) {
   return (
     <form className="thread-input">
       <input
-        className="thread-input__title"
         type="text"
-        label="Judul"
         value={title}
         onChange={onTitleChange}
+        placeholder="Judul"
       />
       <input
-        className="thread-input__category"
         type="text"
-        label="Kategori"
         value={category}
         onChange={onCategoryChange}
+        placeholder="Kategori"
       />
       <textarea
-        className="thread-input__body"
         type="text"
-        label="Masukkan konten"
         value={body}
         onChange={onBodyChange}
+        placeholder="Masukkan konten"
       />
       <button
-        className="thread-input__submit"
         type="submit"
         onClick={() => addThread({ title, category, body })}
       >

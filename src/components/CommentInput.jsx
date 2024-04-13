@@ -9,7 +9,7 @@ function CommentInput({ addComment }) {
     setComment('');
   };
   return (
-    <>
+    <div className="comment_input">
       <span className="comment_give-comment">Beri Komentar</span>
       <form className="comment_form">
         <textarea
@@ -20,7 +20,7 @@ function CommentInput({ addComment }) {
         />
         <button type="button" className="comment_form-submit" onClick={onCommentSubmit}>Kirim</button>
       </form>
-    </>
+    </div>
   );
 }
 

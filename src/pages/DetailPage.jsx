@@ -14,13 +14,15 @@ import {
 import ThreadDetail from '../components/ThreadDetail';
 import CommentsList from '../components/CommentsList';
 import CommentInput from '../components/CommentInput';
+import Loading from '../components/Loading';
 
 function DetailPage() {
   const { threadId } = useParams();
   const {
-    threadDetail = null,
+    threadDetail: thread,
     authUser,
   } = useSelector((states) => states);
+  const { threadDetail = {}, loading = true } = thread;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,26 +60,30 @@ function DetailPage() {
   return (
     <section className="detail-page">
       <div className="detail-page__card">
-        <ThreadDetail
-          {...threadDetail}
-          authUser={authUser.id}
-          upVoteThreadDetail={onUpVoteThreadDetail}
-          downVoteThreadDetail={onDownVoteThreadDetail}
-          neutralizeVoteThreadDetail={onNeutralizeVoteThreadDetail}
-        />
-        <CommentInput addComment={onCommentSubmit} />
-        <p className="detail-page__comment-count">
-          Komentar(
-          {threadDetail.comments.length}
-          )
-        </p>
-        <CommentsList
-          authUser={authUser.id}
-          comments={threadDetail.comments}
-          upVoteComment={onUpVoteComment}
-          downVoteComment={onDownVoteComment}
-          neutralizeVoteComment={onNeutralizeVoteComment}
-        />
+        {loading ? <Loading /> : (
+          <>
+            <ThreadDetail
+              {...threadDetail}
+              authUser={authUser.id}
+              upVoteThreadDetail={onUpVoteThreadDetail}
+              downVoteThreadDetail={onDownVoteThreadDetail}
+              neutralizeVoteThreadDetail={onNeutralizeVoteThreadDetail}
+            />
+            <CommentInput addComment={onCommentSubmit} />
+            <p className="detail-page__comment-count">
+              Komentar(
+              {threadDetail?.comments?.length}
+              )
+            </p>
+            <CommentsList
+              authUser={authUser.id}
+              comments={threadDetail?.comments}
+              upVoteComment={onUpVoteComment}
+              downVoteComment={onDownVoteComment}
+              neutralizeVoteComment={onNeutralizeVoteComment}
+            />
+          </>
+        ) }
       </div>
     </section>
   );

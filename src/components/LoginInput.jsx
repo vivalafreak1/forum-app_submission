@@ -18,7 +18,7 @@ function LoginInput({ login }) {
         placeholder="Email"
       />
       <input
-        id="email"
+        id="password"
         label="Password"
         name="password"
         type="password"

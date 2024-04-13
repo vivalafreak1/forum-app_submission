@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import parse from 'html-react-parser';
 import { userShape } from './ThreadItem';
 import VoteButton from './VoteButton';
 import { postedAt } from '../utils';
@@ -21,27 +22,29 @@ function ThreadDetail({
   return (
     <section className="thread-detail">
       <header>
-        <img src={owner.avatar} alt={owner} />
-        <div className="talk-detail__user-info">
-          <p className="talk-detail__user-name">{owner.name}</p>
+        <img src={owner.avatar} alt={owner} className="thread-detail__avatar" />
+        <div className="thread-detail__user-info">
+          <p className="thread-detail__user-name">{owner.name}</p>
         </div>
       </header>
       <article>
-        <p className="talk-detail__category">{category}</p>
-        <p className="talk-detail__title">{title}</p>
-        <p className="talk-detail__body">{body}</p>
+        <p className="thread-detail__category">{category}</p>
+        <p className="thread-detail__title">{title}</p>
+        <p className="thread-detail__body">{parse(body)}</p>
       </article>
       <footer>
-        <VoteButton
-          id={id}
-          authUser={authUser}
-          upVote={upVoteThreadDetail}
-          downVote={downVoteThreadDetail}
-          neutralizeVote={neutralizeVoteThreadDetail}
-          upVotesBy={upVotesBy}
-          downVotesBy={downVotesBy}
-        />
-        <p className="talk-detail__created-at">{postedAt(createdAt)}</p>
+        <div className="thread-detail__like">
+          <VoteButton
+            id={id}
+            authUser={authUser}
+            upVote={upVoteThreadDetail}
+            downVote={downVoteThreadDetail}
+            neutralizeVote={neutralizeVoteThreadDetail}
+            upVotesBy={upVotesBy}
+            downVotesBy={downVotesBy}
+          />
+          <p className="thread-detail__created-at">{postedAt(createdAt)}</p>
+        </div>
       </footer>
     </section>
   );

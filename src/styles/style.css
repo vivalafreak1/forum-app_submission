@@ -90,130 +90,130 @@
     padding: 6px;
     min-height: 55px;
     display: flex;
-    gap: 16px;
     align-items: center;
     padding: 0 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .navigation img {
     width: 32px;
     vertical-align: middle;
     border-radius: 50%;
+    margin-right: 16px;
   }
   
   .navigation nav {
     flex: 1;
   }
   
-  .navigation nav a {
+  .navigation nav .nav-link {
     text-decoration: none;
     color: var(--foreground-color);
     font-weight: bold;
-  }
-  
-  .navigation button {
-    border: 0;
-    background-color: transparent;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+    margin-right: 16px;
   }
   
   .threads-list {
     margin-bottom: 32px;
   }
   
-  .thread-item {
-    padding: 16px;
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
-    border: 1px solid rgb(243, 243, 243);
-    border-bottom: 0;
-  }
-  
-  .thread-item:last-of-type {
-    border-bottom: 1px solid rgb(243, 243, 243);
-  }
-  
-  .thread-item:hover {
-    background-color: var(--gray-light-color);
-  }
-  
-  .thread-item__user-photo img {
-    width: 40px;
-    border-radius: 50%;
-    vertical-align: middle;
-  }
-  
-  .thread-item__detail {
-    flex: 1;
-  }
-  
-  .thread-item__detail header {
-    display: flex;
-    margin-bottom: 4px;
-  }
-  
-  .thread-item__user-info {
-    flex: 1;
-  }
-  
-  .thread-item__detail .thread-item__created-at {
-    color: var(--gray-dark-color);
-    font-size: 15px;
-  }
-  
-  .thread-item__detail .thread-item__user-name {
-    font-size: 15px;
-    font-weight: 600;
-  }
-  
-  .thread-item__detail .thread-item__user-id {
-    font-size: 15px;
-    color: var(--gray-dark-color);
-  }
-  
-  .thread-item__detail .thread-item__body {
-    font-size: 15px;
-  }
-  
-  .thread-item__detail .thread-item__likes {
-    margin-top: 12px;
-  }
-  
-  .thread-item__likes p {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    gap: 8px;
-  }
-  
-  .thread-item__likes p button {
-    display: flex;
-    border: 0;
-    background-color: transparent;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .thread-input, .thread-reply-input {
+.thread-item {
+  position: relative;
+  padding: 16px;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  border: 1px solid rgb(243, 243, 243);
+  border-bottom: 0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 16px;
+}
+
+.thread-item:last-of-type {
+  border-bottom: 1px solid rgb(243, 243, 243);
+}
+
+.thread-item:hover {
+  background-color: var(--gray-light-color);
+}
+
+.thread-item__user-photo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.thread-item__detail {
+  flex: 1;
+}
+
+.thread-item__user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thread-item__created-at {
+  color: var(--gray-dark-color);
+  font-size: 15px;
+  position: absolute; 
+  top: 10px;
+  right: 10px; 
+}
+
+.thread-item__user-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.thread-item__category {
+  font-size: 15px;
+  color: green; 
+  margin-bottom: 4px;
+}
+
+.thread-item__title {
+  font-size: 18px; 
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.thread-item__body {
+  font-size: 15px;
+}
+
+.thread-item__total-comments {
+  font-size: 15px;
+}
+
+.thread-item__total-comments,
+.thread-item__user-name {
+  color: var(--gray-dark-color);
+}
+
+  .thread-input {
     margin-bottom: 16px;
   }
   
-  .thread-input textarea, .thread-reply-input textarea {
+  .thread-input input[type="text"],
+  .thread-input textarea {
     font-family: 'Open Sans', sans-serif;
     background-color: var(--background-color);
-    border-color: var(--gray-light-color);
+    border: 1px solid var(--gray-light-color);
     padding: 8px;
     width: 100%;
-    height: 150px;
-    resize: none;
     font-size: 15px;
+    margin-bottom: 8px;
   }
   
-  .thread-input button, .thread-reply-input button {
+  .thread-input textarea {
+    height: 150px;
+    resize: none;
+  }
+  
+  .thread-input button {
     background-color: var(--accent-color);
     font-family: 'Open Sans', sans-serif;
     color: var(--background-color);
@@ -223,12 +223,6 @@
     width: 100%;
     padding: 8px;
     cursor: pointer;
-  }
-  
-  .thread-input__char-left, .thread-reply-input__char-left {
-    font-size: 15px;
-    margin: 6px 0 8px 0;
-    color: var(--gray-dark-color);
   }
   
   .detail-page {
@@ -256,7 +250,8 @@
   }
   
   .thread-detail header img {
-    width: 80px;
+    width: 40px;
+    height: 40px; /* Set the height to match the width */
     border-radius: 50%;
   }
   
@@ -268,8 +263,21 @@
     font-weight: 600;
   }
   
-  .thread-detail__text {
-    font-size: 20px;
+  .thread-detail__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .thread-detail__category {
+    font-size: 16px;
+    color: green;
+    margin-bottom: 8px;
+  }
+  
+  .thread-detail__body {
+    font-size: 14px;
+    margin-bottom: 16px;
   }
   
   .thread-detail footer {
@@ -295,62 +303,100 @@
     margin-top: 32px;
   }
   
-  .thread-item__title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .thread-item__category {
-    font-size: 12px;
-  }
-
    .vote-button_upvotes .vote-button_downvotes{
     font-size: 12px;
    }
 
-   .leaderboard_item {
-    display: flex;
-    align-items: center; 
-    margin-top: 16px;
-   }
-
-   .leaderboard_item-avatar {
-    width: 34px; 
-    height: 34px;
-    margin-left: 8px;
-    margin-right: 8px;
-   }
-
-   .leaderboard_item-name {
-    font-size: 20px;
-    font-weight: 500;
-   }
-
-   .leaderboard_item-score {
-    margin-left: auto; 
-    font-size: 20px; 
-    font-weight: 500;
-    margin-right: 16px 
-   }
-
-   .comment_give-comment {
-    margin-left: 2px;
+   .leaderboards-page__title {
     font-weight: bold;
-    font-size: 14px;
-   }
-
-   .comment_form {
-    margin-left: 2px;
-    margin-top: 1px;
-    margin-bottom: 5px;
-   }
-
-  .comment_form-text-area {
-    width: 1120px;
-    padding: 8px; 
-    border: 1px solid #ccc;
-    resize: vertical;    
+    margin-left: 10px;
+    margin-top: 10px;
   }
+
+  .leaderboards-page__grid-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .leaderboards-page__grid-item {
+    /* none */
+  }
+
+  .leaderboards-page__subtitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+.leaderboard_item {
+  display: flex;
+  align-items: center; 
+  margin-top: 4px;
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  padding: 8px; /* Add padding for better spacing */
+}
+
+.leaderboard_item-avatar {
+  width: 34px; 
+  height: 34px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.leaderboard_item-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.leaderboard_item-score {
+  margin-left: auto; 
+  font-size: 20px; 
+  font-weight: 500;
+  margin-right: 16px;
+}
+
+/* style.css */
+.comment_input {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.comment_give-comment {
+  margin-left: 2px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.comment_form {
+  margin-left: 2px;
+  margin-top: 1px;
+  margin-bottom: 6px;
+}
+
+.comment_form-text-area {
+  width: 100%; 
+  padding: 8px; 
+  border: 1px solid #ccc;
+  resize: vertical;    
+}
+
+.comment_form-submit {
+  /* Button Styles */
+  background-color: transparent; /* No background color */
+  border: 1px solid green; /* Green border */
+  border-radius: 4px; /* Border curve */
+  padding: 8px 16px; /* Padding for better appearance */
+  cursor: pointer; /* Show pointer cursor on hover */
+  font-weight: bold; 
+}
+
+.comment_form-submit:hover {
+  background-color: green; 
+  color: white;
+}
 
   .comment-item {
     padding-bottom: 0;
@@ -436,38 +482,36 @@
     background-color: #0056b3;
   }
 
-  .leaderboards-page__title {
-    font-weight: bold;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-
-  .leaderboards-page__grid-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-  }
-
-  .leaderboards-page__grid-item {
-    /* none */
-  }
-
-  .leaderboards-page__subtitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-
   .home-page__category-contained {
     margin-right: 16px;
     margin-bottom: 16px;
+    border: 1px solid green;
+    background-color: green;
+    color: white;
   }
-
+  
   .home-page__category-outlined {
     margin-right: 16px;
     margin-bottom: 16px;
-    border: 1px solid #000;
+    border: 1px solid green;
     background-color: transparent;
+    color: green;
+  }
+  
+  .home-page__category-selected {
+    border: 1px solid green;
+    background-color: green;
+    color: white;
+  }
+
+  .home-page__category-contained,
+  .home-page__category-outlined {
+    margin-top: 16px;
+    margin-right: 8px; 
+    margin-bottom: 8px;
+    border-radius: 8px; 
+    text-transform: uppercase;
+    padding: 8px 16px; /* Adjusted padding */
   }
 
   .detail-page {

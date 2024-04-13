@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
 import CardActions from '@mui/material/CardActions';
 import { FaRegComment } from 'react-icons/fa';
 import { postedAt } from '../utils';
@@ -33,24 +34,32 @@ function ThreadItem({
     }
   };
 
+  const truncatedBody = body.length > 100 ? `${body.substring(0, 100)}...` : parse(body);
+
   return (
-    <div role="button" tabIndex={0} className="thread-item" onClick={onThreadClick} onKeyDown={onThreadPress}>
+    <div
+      role="button"
+      tabIndex={0}
+      className="thread-item"
+      onClick={onThreadClick}
+      onKeyDown={onThreadPress}
+    >
       <div className="thread-item__user-photo">
-        <img src={threadOwner.avatar} alt={threadOwner} />
+        <img src={threadOwner.avatar} alt={threadOwner.name} />
       </div>
       <div className="thread-item__detail">
         <header>
           <div className="thread-item__user-info">
             <p className="thread-item__user-name">{threadOwner.name}</p>
+            <p className="thread-item__created-at">{postedAt(createdAt)}</p>
           </div>
-          <p className="thread-item__created-at">{postedAt(createdAt)}</p>
         </header>
         <article>
           <p className="thread-item__category">{category}</p>
           <p className="thread-item__title">{title}</p>
-          <p className="thread-item__body">{body}</p>
+          <p className="thread-item__body">{parse(truncatedBody)}</p>
         </article>
-        <CardActions sx={{ ml: 1 }}>
+        <CardActions>
           <VoteButton
             id={id}
             authUser={authUser}

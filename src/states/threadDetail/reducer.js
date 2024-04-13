@@ -1,18 +1,23 @@
 import { ActionType } from './action';
 
-function threadDetailReducer(threadDetail = null, action = {}) {
+const initialState = {
+  threadDetail: {},
+  loading: true,
+};
+
+function threadDetailReducer(threadDetail = initialState, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
-      return action.payload.threadDetail;
+      return { ...initialState, threadDetail: action.payload.threadDetail, loading: false };
     case ActionType.UP_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
-        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.upVotesBy.concat([action.payload.userId]),
-        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.downVotesBy,
+        upVotesBy: initialState.threadDetail.upVotesBy.includes(action.payload.userId)
+          ? initialState.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : initialState.threadDetail.upVotesBy.concat([action.payload.userId]),
+        downVotesBy: initialState.threadDetail.downVotesBy.includes(action.payload.userId)
+          ? initialState.threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
+          : initialState.threadDetail.downVotesBy,
       };
     case ActionType.DOWN_VOTE_THREAD_DETAIL:
       return {
@@ -27,9 +32,9 @@ function threadDetailReducer(threadDetail = null, action = {}) {
     case ActionType.NEUTRALIZE_VOTE_THREAD_DETAIL:
       return {
         ...threadDetail,
-        upVotesBy: threadDetail.upVotesBy.includes(action.payload.userId)
-          ? threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.upVotesBy,
+        upVotesBy: initialState.threadDetail.upVotesBy.includes(action.payload.userId)
+          ? initialState.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : initialState.threadDetail.upVotesBy,
         downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
           ? threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
           : threadDetail.downVotesBy,
