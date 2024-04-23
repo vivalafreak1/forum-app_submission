@@ -18,6 +18,7 @@ function VoteButton({
 }) {
   const isUpVoted = upVotesBy.includes(authUser);
   const isDownVoted = downVotesBy.includes(authUser);
+  console.log(isUpVoted, isDownVoted, authUser);
 
   const onUpVoteClick = () => {
     upVote(id);

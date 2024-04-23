@@ -10,7 +10,15 @@ const ActionType = {
   UP_VOTE_COMMENT: 'UP_VOTE_COMMENT',
   DOWN_VOTE_COMMENT: 'DOWN_VOTE_COMMENT',
   NEUTRALIZE_VOTE_COMMENT: 'NEUTRALIZE_VOTE_COMMENT',
+  SET_LOADING: 'SET_LOADING',
 };
+
+function setLoading(value) {
+  return {
+    type: ActionType.SET_LOADING,
+    payload: value,
+  };
+}
 
 function receiveThreadDetailActionCreator(threadDetail) {
   return {
@@ -103,9 +111,12 @@ function asyncReceiveThreadDetail(threadId) {
 function asyncUpVoteThreadDetail() {
   return async (dispatch, getState) => {
     const { threadDetail, authUser } = getState();
+    const { threadDetail: detail } = threadDetail;
+    console.log(detail, authUser);
     dispatch(upVoteThreadDetailActionCreator(authUser.id));
     try {
-      await api.upVoteThread(threadDetail.id);
+      await api.upVoteThread(detail.id);
+      dispatch(setLoading(false));
     } catch (error) {
       alert(error.message);
     }
@@ -126,28 +137,29 @@ function asyncDownVoteThreadDetail() {
 
 function asyncNeutralizeVoteThreadDetail() {
   return async (dispatch, getState) => {
-    // dispatch(showLoading());
     const { threadDetail, authUser } = getState();
+    const { threadDetail: detail } = threadDetail;
+    console.log(detail);
     dispatch(neutralizeVoteThreadDetailActionCreator(authUser.id));
     try {
-      await api.neutralizeThreadVote(threadDetail.id);
+      await api.neutralizeThreadVote(detail.threadDetail.id);
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
   };
 }
 
-function asyncAddComment({ content }) {
+function asyncAddComment({ content, idThread }) {
   return async (dispatch, getState) => {
     // dispatch(showLoading());
-    const { threadDetail } = getState();
+    // const { threadDetail } = getState();
     try {
-      const comment = await api.createComment({
+      await api.createComment({
         content,
-        threadId: threadDetail.id,
+        threadId: idThread,
       });
-      dispatch(addCommentActionCreator(comment));
+      // dispatch(addCommentActionCreator(comment));
+      dispatch(asyncReceiveThreadDetail(idThread));
     } catch (error) {
       alert(error.message);
     }

@@ -21,7 +21,7 @@ function HomePage() {
   const { threads, loading } = useSelector((states) => states.threads);
   const dispatch = useDispatch();
 
-  const categories = new Set(threads.map((thread) => thread.category));
+  const categories = new Set(threads?.map((thread) => thread.category));
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
@@ -39,7 +39,7 @@ function HomePage() {
     dispatch(asyncNeutralizeVoteThread(id));
   };
 
-  const threadList = threads.map((thread) => ({
+  const threadList = threads?.map((thread) => ({
     ...thread,
     threadOwner: users.find((user) => user.id === thread.ownerId),
     authUser: authUser.id,

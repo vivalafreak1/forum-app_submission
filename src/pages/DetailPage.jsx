@@ -24,10 +24,11 @@ function DetailPage() {
   } = useSelector((states) => states);
   const { threadDetail = {}, loading = true } = thread;
   const dispatch = useDispatch();
-
+  const { threadDetail: detail } = threadDetail;
+  console.log(threadDetail);
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(threadId));
-  }, [threadId, dispatch]);
+  }, [threadId, dispatch, loading]);
 
   const onUpVoteThreadDetail = () => {
     dispatch(asyncUpVoteThreadDetail());
@@ -41,8 +42,8 @@ function DetailPage() {
     dispatch(asyncNeutralizeVoteThreadDetail());
   };
 
-  const onCommentSubmit = (content) => {
-    dispatch(asyncAddComment({ content }));
+  const onCommentSubmit = (content, idThread) => {
+    dispatch(asyncAddComment({ content, idThread }));
   };
 
   const onUpVoteComment = (id) => {
@@ -63,7 +64,7 @@ function DetailPage() {
         {loading ? <Loading /> : (
           <>
             <ThreadDetail
-              {...threadDetail}
+              {...detail}
               authUser={authUser.id}
               upVoteThreadDetail={onUpVoteThreadDetail}
               downVoteThreadDetail={onDownVoteThreadDetail}
@@ -72,12 +73,12 @@ function DetailPage() {
             <CommentInput addComment={onCommentSubmit} />
             <p className="detail-page__comment-count">
               Komentar(
-              {threadDetail?.comments?.length}
+              {detail?.comments?.length}
               )
             </p>
             <CommentsList
               authUser={authUser.id}
-              comments={threadDetail?.comments}
+              comments={detail?.comments}
               upVoteComment={onUpVoteComment}
               downVoteComment={onDownVoteComment}
               neutralizeVoteComment={onNeutralizeVoteComment}

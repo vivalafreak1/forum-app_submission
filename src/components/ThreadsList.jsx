@@ -11,7 +11,7 @@ function ThreadsList({
   return (
     <div className="threads-list">
       {
-        threads.map((thread) => (
+        threads?.map((thread) => (
           <ThreadItem
             key={thread.id}
             {...thread}

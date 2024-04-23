@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ActionType } from './action';
 
 const initialState = {
@@ -6,18 +7,26 @@ const initialState = {
 };
 
 function threadDetailReducer(threadDetail = initialState, action = {}) {
+  console.log(threadDetail);
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
-      return { ...initialState, threadDetail: action.payload.threadDetail, loading: false };
-    case ActionType.UP_VOTE_THREAD_DETAIL:
       return {
-        ...threadDetail,
-        upVotesBy: initialState.threadDetail.upVotesBy.includes(action.payload.userId)
-          ? initialState.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : initialState.threadDetail.upVotesBy.concat([action.payload.userId]),
-        downVotesBy: initialState.threadDetail.downVotesBy.includes(action.payload.userId)
-          ? initialState.threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
-          : initialState.threadDetail.downVotesBy,
+        ...initialState,
+        threadDetail: {
+          threadDetail: action.payload.threadDetail,
+        },
+        loading: false,
+      };
+    case ActionType.UP_VOTE_THREAD_DETAIL:
+      console.log(threadDetail.threadDetail);
+      return {
+        ...threadDetail.threadDetail,
+        upVotesBy: threadDetail.threadDetail.upVotesBy.includes(action.payload.userId)
+          ? threadDetail.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : threadDetail.threadDetail.upVotesBy.concat([action.payload.userId]),
+        downVotesBy: threadDetail.threadDetail.downVotesBy.includes(action.payload.userId)
+          ? threadDetail.threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
+          : threadDetail.threadDetail.downVotesBy,
       };
     case ActionType.DOWN_VOTE_THREAD_DETAIL:
       return {
@@ -30,20 +39,21 @@ function threadDetailReducer(threadDetail = initialState, action = {}) {
           : threadDetail.downVotesBy.concat([action.payload.userId]),
       };
     case ActionType.NEUTRALIZE_VOTE_THREAD_DETAIL:
+      console.log(threadDetail);
       return {
         ...threadDetail,
-        upVotesBy: initialState.threadDetail.upVotesBy.includes(action.payload.userId)
-          ? initialState.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
-          : initialState.threadDetail.upVotesBy,
-        downVotesBy: threadDetail.downVotesBy.includes(action.payload.userId)
-          ? threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
-          : threadDetail.downVotesBy,
+        upVotesBy: threadDetail.threadDetail.threadDetail.upVotesBy.includes(action.payload.userId)
+          ? threadDetail.threadDetail.threadDetail.upVotesBy.filter((id) => id !== action.payload.userId)
+          : threadDetail.threadDetail.threadDetail.upVotesBy,
+        downVotesBy: threadDetail.threadDetail.threadDetail.downVotesBy.includes(action.payload.userId)
+          ? threadDetail.threadDetail.threadDetail.downVotesBy.filter((id) => id !== action.payload.userId)
+          : threadDetail.threadDetail.threadDetail.downVotesBy,
       };
-    case ActionType.ADD_COMMENT:
-      return {
-        ...threadDetail,
-        comments: [action.payload.comment, ...threadDetail.comments],
-      };
+    // case ActionType.ADD_COMMENT:
+    //   return {
+    //     ...threadDetail,
+    //     comments: [action.payload.comment, ...threadDetail.comments],
+    //   };
     case ActionType.UP_VOTE_COMMENT:
       return {
         ...threadDetail,
@@ -98,6 +108,8 @@ function threadDetailReducer(threadDetail = initialState, action = {}) {
           return comment;
         }),
       };
+    case ActionType.SET_LOADING:
+      return { ...threadDetail, loading: action.payload };
     default:
       return threadDetail;
   }

@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 
 function CommentInput({ addComment }) {
   const [comment, onCommentChange, setComment] = useInput('');
+  const { threadId } = useParams();
+  console.log(threadId);
   const onCommentSubmit = () => {
-    addComment(comment);
+    addComment(comment, threadId);
     setComment('');
   };
   return (
