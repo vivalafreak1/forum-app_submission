@@ -2,14 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LeaderboardItem from '../components/LeaderboardItem';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
+import Loading from '../components/Loading';
 
 function LeaderboardsPage() {
   const dispatch = useDispatch();
-  const { leaderboards = [] } = useSelector((states) => states);
+  const { leaderboards = [], loading = true } = useSelector((states) => states.leaderboards);
 
   useEffect(() => {
     dispatch(asyncReceiveLeaderboards());
   }, [dispatch]);
+
+  console.log(loading);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className="leaderboards-page">

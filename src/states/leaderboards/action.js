@@ -3,7 +3,15 @@ import api from '../../utils/api';
 
 const ActionType = {
   RECEIVE_LEADERBOARDS: 'RECEIVE_LEADERBOARDS',
+  LOADING: 'LOADING',
 };
+
+function setLoading(value) {
+  return {
+    type: ActionType.LOADING,
+    payload: value,
+  };
+}
 
 function receiveLeaderboardsActionCreator(leaderboards) {
   return {
@@ -16,14 +24,15 @@ function receiveLeaderboardsActionCreator(leaderboards) {
 
 function asyncReceiveLeaderboards() {
   return async (dispatch) => {
-    // dispatch(showLoading());
+    dispatch(setLoading(true));
     try {
       const leaderboards = await api.getLeaderboards();
       dispatch(receiveLeaderboardsActionCreator(leaderboards));
     } catch (error) {
       alert(error.message);
+    } finally {
+      dispatch(setLoading(false));
     }
-    // dispatch(hideLoading());
   };
 }
 

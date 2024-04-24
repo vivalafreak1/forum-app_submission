@@ -97,12 +97,14 @@ function neutralizeVoteCommentActionCreator(commentId, userId) {
 
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
-    // dispatch(showLoading());
+    dispatch(setLoading(true));
     try {
       const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
+    } finally {
+      dispatch(setLoading(false));
     }
     // dispatch(hideLoading());
   };

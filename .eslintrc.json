@@ -17,6 +17,7 @@
         "no-console": "off",
         "import/no-extraneous-dependencies": "off",
         "import/no-unresolved": "off",
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "no-unused-vars": "off"
     }
 }

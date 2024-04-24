@@ -10,6 +10,7 @@ import {
   asyncDownVoteThread,
   asyncNeutralizeVoteThread,
 } from '../states/threads/action';
+import Loading from '../components/Loading';
 
 function HomePage() {
   const [filter, setFilter] = useState('');
@@ -46,7 +47,7 @@ function HomePage() {
   }));
 
   if (loading) {
-    return <div>Loading..</div>;
+    return <Loading />;
   }
 
   return (

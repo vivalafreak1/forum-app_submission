@@ -1,3 +1,5 @@
+import delay from './delay';
+
 const api = (() => {
   const BASE_URL = 'https://forum-api.dicoding.dev/v1';
 
@@ -126,6 +128,7 @@ const api = (() => {
   }
 
   async function getAllThreads() {
+    await delay();
     const response = await fetch(`${BASE_URL}/threads`);
 
     const responseJson = await response.json();
@@ -142,6 +145,7 @@ const api = (() => {
   }
 
   async function getThreadDetail(id) {
+    await delay();
     const response = await fetch(`${BASE_URL}/threads/${id}`);
 
     const responseJson = await response.json();
@@ -158,6 +162,7 @@ const api = (() => {
   }
 
   async function createComment({ content, threadId }) {
+    await delay();
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments`, {
       method: 'POST',
       headers: {
@@ -296,6 +301,7 @@ const api = (() => {
   }
 
   async function getLeaderboards() {
+    await delay();
     const response = await fetch(`${BASE_URL}/leaderboards`);
 
     const responseJson = await response.json();

@@ -28,7 +28,7 @@ function DetailPage() {
   console.log(threadDetail);
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(threadId));
-  }, [threadId, dispatch, loading]);
+  }, [threadId, dispatch]);
 
   const onUpVoteThreadDetail = () => {
     dispatch(asyncUpVoteThreadDetail());
@@ -57,6 +57,8 @@ function DetailPage() {
   const onNeutralizeVoteComment = (id) => {
     dispatch(asyncNeutralizeVoteComment(id));
   };
+
+  console.log(loading);
 
   return (
     <section className="detail-page">
