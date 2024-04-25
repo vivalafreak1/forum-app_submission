@@ -1,4 +1,4 @@
-// import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
@@ -97,16 +97,17 @@ function neutralizeVoteCommentActionCreator(commentId, userId) {
 
 function asyncReceiveThreadDetail(threadId) {
   return async (dispatch) => {
-    dispatch(setLoading(true));
+    // dispatch(setLoading(true));
+    dispatch(showLoading());
     try {
       const threadDetail = await api.getThreadDetail(threadId);
       dispatch(receiveThreadDetailActionCreator(threadDetail));
     } catch (error) {
       alert(error.message);
-    } finally {
-      dispatch(setLoading(false));
-    }
-    // dispatch(hideLoading());
+    }//  finally {
+    //   dispatch(setLoading(false));
+    // }
+    dispatch(hideLoading());
   };
 }
 
@@ -153,7 +154,7 @@ function asyncNeutralizeVoteThreadDetail() {
 
 function asyncAddComment({ content, idThread }) {
   return async (dispatch, getState) => {
-    // dispatch(showLoading());
+    dispatch(showLoading());
     // const { threadDetail } = getState();
     try {
       await api.createComment({
@@ -165,7 +166,7 @@ function asyncAddComment({ content, idThread }) {
     } catch (error) {
       alert(error.message);
     }
-    // dispatch(hideLoading());
+    dispatch(hideLoading());
   };
 }
 

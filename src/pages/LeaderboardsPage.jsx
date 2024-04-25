@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LeaderboardItem from '../components/LeaderboardItem';
 import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
-import Loading from '../components/Loading';
 
 function LeaderboardsPage() {
   const dispatch = useDispatch();
@@ -13,10 +12,6 @@ function LeaderboardsPage() {
   }, [dispatch]);
 
   console.log(loading);
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <section className="leaderboards-page">

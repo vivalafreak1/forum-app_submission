@@ -10,7 +10,6 @@ import {
   asyncDownVoteThread,
   asyncNeutralizeVoteThread,
 } from '../states/threads/action';
-import Loading from '../components/Loading';
 
 function HomePage() {
   const [filter, setFilter] = useState('');
@@ -45,10 +44,6 @@ function HomePage() {
     threadOwner: users.find((user) => user.id === thread.ownerId),
     authUser: authUser.id,
   }));
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <section className="home-page">
