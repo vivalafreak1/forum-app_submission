@@ -403,55 +403,56 @@
   background-color: green; 
   color: white;
 }
+.comment-item {
+  padding: 16px; /* Add padding around the comment item */
+  padding-bottom: 0; /* Remove padding from the bottom to avoid double padding with the divider */
+}
 
-  .comment-item {
-    padding-bottom: 0;
-  }
+.comment-item_container {
+  display: flex;
+  justify-content: space-between; /* Aligns items horizontally with space between */
+  align-items: center;
+}
 
-  .comment-item_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-  }
+.comment-item_stack {
+  display: flex;
+  align-items: center;
+}
 
-  .comment-item_grid {
-    flex: 0 0 auto;
-  }
+.comment-item_user-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 8px; /* Add spacing between avatar and name */
+}
 
-  .comment-item_user-avatar {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-  }
+.comment-item_user-name {
+  font-weight: bold;
+  color: #000;
+  margin-right: 8px; /* Add spacing between name and postedat */
+}
 
-  .comment-item_user-name {
-    font-weight: bold;
-    color: #000;
-  }
+.comment-item_user-postedat {
+  font-size: 12px;
+  color: #000;
+}
 
-  .comment-item_user-postedat {
-    margin-left: 10px;
-    font-size: 12px;
-    color: #000;
-  }
+.comment-item_user-content {
+  margin-top: 8px;
+  font-weight: medium;
+  color: #000;
+}
 
-  .comment-item_user-content {
-    margin-top: 8px;
-    font-weight: medium;
-    color: #000;
-  }
+.comment-item_card {
+  display: flex; /* Change to flex to align items horizontally */
+  align-items: center; /* Align items vertically in the card */
+  gap: 5px;
+}
 
-  .comment-item_card {
-    margin-left: 8px;
-    padding-bottom: 16px;
-    padding-top: 8px;
-  }
-
-  .comment-item_divider {
-    border-bottom: 1px solid #e0e0e0;
-    margin-top: 16px;
-  }
+.comment-item_divider {
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 16px;
+}
 
   .not-found-container {
     display: flex;
@@ -477,7 +478,7 @@
   .not-found-link {
     font-size: 18px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -485,7 +486,7 @@
   }
   
   .not-found-link:hover {
-    background-color: #0056b3;
+    background-color: #218838;
   }
 
   .home-page__category-contained {

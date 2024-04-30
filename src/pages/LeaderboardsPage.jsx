@@ -5,13 +5,11 @@ import { asyncReceiveLeaderboards } from '../states/leaderboards/action';
 
 function LeaderboardsPage() {
   const dispatch = useDispatch();
-  const { leaderboards = [], loading = true } = useSelector((states) => states.leaderboards);
+  const { leaderboards = [] } = useSelector((states) => states);
 
   useEffect(() => {
     dispatch(asyncReceiveLeaderboards());
   }, [dispatch]);
-
-  console.log(loading);
 
   return (
     <section className="leaderboards-page">

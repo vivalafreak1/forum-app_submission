@@ -14,18 +14,14 @@ import {
 import ThreadDetail from '../components/ThreadDetail';
 import CommentsList from '../components/CommentsList';
 import CommentInput from '../components/CommentInput';
-import Loading from '../components/Loading';
+import NotFoundPage from './NotFoundPage';
 
 function DetailPage() {
   const { threadId } = useParams();
-  const {
-    threadDetail: thread,
-    authUser,
-  } = useSelector((states) => states);
-  const { threadDetail = {}, loading = true } = thread;
+  const { threadDetail = null, authUser } = useSelector((states) => states);
+
   const dispatch = useDispatch();
-  const { threadDetail: detail } = threadDetail;
-  console.log(threadDetail);
+
   useEffect(() => {
     dispatch(asyncReceiveThreadDetail(threadId));
   }, [threadId, dispatch]);
@@ -58,35 +54,33 @@ function DetailPage() {
     dispatch(asyncNeutralizeVoteComment(id));
   };
 
-  console.log(loading);
+  if (threadDetail === null) {
+    return <NotFoundPage />;
+  }
 
   return (
     <section className="detail-page">
       <div className="detail-page__card">
-        {loading ? <Loading /> : (
-          <>
-            <ThreadDetail
-              {...detail}
-              authUser={authUser.id}
-              upVoteThreadDetail={onUpVoteThreadDetail}
-              downVoteThreadDetail={onDownVoteThreadDetail}
-              neutralizeVoteThreadDetail={onNeutralizeVoteThreadDetail}
-            />
-            <CommentInput addComment={onCommentSubmit} />
-            <p className="detail-page__comment-count">
-              Komentar(
-              {detail?.comments?.length}
-              )
-            </p>
-            <CommentsList
-              authUser={authUser.id}
-              comments={detail?.comments}
-              upVoteComment={onUpVoteComment}
-              downVoteComment={onDownVoteComment}
-              neutralizeVoteComment={onNeutralizeVoteComment}
-            />
-          </>
-        ) }
+        <ThreadDetail
+          {...threadDetail}
+          authUser={authUser.id}
+          upVoteThreadDetail={onUpVoteThreadDetail}
+          downVoteThreadDetail={onDownVoteThreadDetail}
+          neutralizeVoteThreadDetail={onNeutralizeVoteThreadDetail}
+        />
+        <CommentInput addComment={onCommentSubmit} />
+        <p className="detail-page__comment-count">
+          Komentar(
+          {threadDetail.comments.length}
+          )
+        </p>
+        <CommentsList
+          authUser={authUser.id}
+          comments={threadDetail.comments}
+          upVoteComment={onUpVoteComment}
+          downVoteComment={onDownVoteComment}
+          neutralizeVoteComment={onNeutralizeVoteComment}
+        />
       </div>
     </section>
   );

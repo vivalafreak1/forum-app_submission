@@ -34,6 +34,7 @@ function ThreadItem({
     }
   };
 
+  const truncatedTitle = title.length > 60 ? `${title.substring(0, 60)}...` : parse(title);
   const truncatedBody = body.length > 100 ? `${body.substring(0, 100)}...` : parse(body);
 
   return (
@@ -56,8 +57,8 @@ function ThreadItem({
         </header>
         <article>
           <p className="thread-item__category">{category}</p>
-          <p className="thread-item__title">{title}</p>
-          <p className="thread-item__body">{parse(truncatedBody)}</p>
+          <p className="thread-item__title">{truncatedTitle}</p>
+          <p className="thread-item__body">{truncatedBody}</p>
         </article>
         <CardActions>
           <VoteButton

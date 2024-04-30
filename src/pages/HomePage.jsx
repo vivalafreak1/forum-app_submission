@@ -17,8 +17,8 @@ function HomePage() {
   const {
     users = [],
     authUser,
+    threads = [],
   } = useSelector((states) => states);
-  const { threads, loading } = useSelector((states) => states.threads);
   const dispatch = useDispatch();
 
   const categories = new Set(threads?.map((thread) => thread.category));

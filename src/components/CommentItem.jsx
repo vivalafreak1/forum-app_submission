@@ -19,32 +19,30 @@ function CommentItem({
   return (
     <section className="comment-item">
       <div className="comment-item_container">
-        <div className="comment-item_grid">
-          <div className="comment-item_stack">
-            <img
-              className="comment-item_user-avatar"
-              src={owner.avatar}
-              alt="Avatar Icon"
-            />
+        <div className="comment-item_stack">
+          <img
+            className="comment-item_user-avatar"
+            src={owner.avatar}
+            alt="Avatar Icon"
+          />
+          <div>
             <p className="comment-item_user-name">{owner.name}</p>
+            <span className="comment-item_user-postedat">{postedAt(createdAt)}</span>
           </div>
         </div>
-        <div className="comment-item_grid">
-          <span className="comment-item_user-postedat">{postedAt(createdAt)}</span>
+        <div className="comment-item_card">
+          <VoteButton
+            id={id}
+            authUser={authUser}
+            upVotesBy={upVotesBy}
+            downVotesBy={downVotesBy}
+            upVote={upVote}
+            downVote={downVote}
+            neutralizeVote={neutralizeVote}
+          />
         </div>
       </div>
       <p className="comment-item_user-content">{content}</p>
-      <div className="comment-item_card">
-        <VoteButton
-          id={id}
-          authUser={authUser}
-          upVotesBy={upVotesBy}
-          downVotesBy={downVotesBy}
-          upVote={upVote}
-          downVote={downVote}
-          neutralizeVote={neutralizeVote}
-        />
-      </div>
       <div className="comment-item_divider" />
     </section>
   );

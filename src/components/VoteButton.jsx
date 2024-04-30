@@ -35,21 +35,21 @@ function VoteButton({
   return (
     <>
       {isUpVoted ? (
-        <AiOutlineLike
+        <AiFillLike
           onClick={onNeutralizeVoteClick}
         />
       ) : (
-        <AiFillLike
+        <AiOutlineLike
           onClick={onUpVoteClick}
         />
       )}
       <p className="vote-button_upvotes">{upVotesBy.length}</p>
       {isDownVoted ? (
-        <AiOutlineDislike
+        <AiFillDislike
           onClick={onNeutralizeVoteClick}
         />
       ) : (
-        <AiFillDislike
+        <AiOutlineDislike
           onClick={onDownVoteClick}
         />
       )}

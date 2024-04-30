@@ -7,15 +7,7 @@ const ActionType = {
   UP_VOTE_THREAD: 'UP_VOTE_THREAD',
   DOWN_VOTE_THREAD: 'DOWN_VOTE_THREAD',
   NEUTRALIZE_VOTE_THREAD: 'NEUTRALIZE_VOTE_THREAD',
-  LOADING: 'LOADING',
 };
-
-function loadingThreadsActionCreator(isLoading) {
-  return {
-    type: ActionType.LOADING,
-    payload: isLoading,
-  };
-}
 
 function receiveThreadsActionCreator(threads) {
   return {
@@ -124,5 +116,4 @@ export {
   asyncUpVoteThread,
   asyncDownVoteThread,
   asyncNeutralizeVoteThread,
-  loadingThreadsActionCreator,
 };

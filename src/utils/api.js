@@ -279,7 +279,7 @@ const api = (() => {
   }
 
   async function neutralVoteComment(threadId, commentId) {
-    const response = await _fetchWithAuth(`${BASE_URL}/threads/comments/${commentId}/neutral-vote`, {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

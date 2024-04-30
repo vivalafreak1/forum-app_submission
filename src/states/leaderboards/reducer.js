@@ -1,21 +1,9 @@
 import { ActionType } from './action';
 
-const initialState = {
-  leaderboards: [],
-  loading: true,
-};
-function leaderboardsReducer(leaderboards = initialState, action = {}) {
+function leaderboardsReducer(leaderboards = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_LEADERBOARDS:
-      return {
-        ...leaderboards,
-        leaderboards: action.payload.leaderboards,
-      };
-    case ActionType.LOADING:
-      return {
-        ...leaderboards,
-        loading: action.payload,
-      };
+      return action.payload.leaderboards;
     default:
       return leaderboards;
   }
