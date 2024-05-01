@@ -39,16 +39,18 @@ function ThreadItem({
 
   return (
     <div
-      role="button"
-      tabIndex={0}
       className="thread-item"
-      onClick={onThreadClick}
-      onKeyDown={onThreadPress}
     >
       <div className="thread-item__user-photo">
         <img src={threadOwner.avatar} alt={threadOwner.name} />
       </div>
-      <div className="thread-item__detail">
+      <div
+        className="thread-item__detail"
+        role="button"
+        tabIndex={0}
+        onClick={onThreadClick}
+        onKeyDown={onThreadPress}
+      >
         <header>
           <div className="thread-item__user-info">
             <p className="thread-item__user-name">{threadOwner.name}</p>
@@ -60,20 +62,20 @@ function ThreadItem({
           <p className="thread-item__title">{truncatedTitle}</p>
           <p className="thread-item__body">{truncatedBody}</p>
         </article>
-        <CardActions>
-          <VoteButton
-            id={id}
-            authUser={authUser}
-            upVote={upVote}
-            downVote={downVote}
-            neutralizeVote={neutralizeVote}
-            upVotesBy={upVotesBy}
-            downVotesBy={downVotesBy}
-          />
-          <FaRegComment />
-          <p className="thread-item__total-comments">{totalComments}</p>
-        </CardActions>
       </div>
+      <CardActions>
+        <VoteButton
+          id={id}
+          authUser={authUser}
+          upVote={upVote}
+          downVote={downVote}
+          neutralizeVote={neutralizeVote}
+          upVotesBy={upVotesBy}
+          downVotesBy={downVotesBy}
+        />
+        <FaRegComment />
+        <p className="thread-item__total-comments">{totalComments}</p>
+      </CardActions>
     </div>
   );
 }
