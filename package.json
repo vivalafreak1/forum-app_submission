@@ -30,7 +30,8 @@
     "test": "vitest",
     "e2e": "cypress run",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src --ext .jsx --ext .js"
+    "lint": "eslint ./src --ext .jsx --ext .js",
+    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://0.0.0.0:5173 e2e"
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +65,7 @@
     "eslint-plugin-react": "^7.34.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^24.0.0",
+    "start-server-and-test": "^2.0.3",
     "vite": "^4.2.0",
     "vitest": "^0.31.1"
   }
